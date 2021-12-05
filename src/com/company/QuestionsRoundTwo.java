@@ -4,14 +4,14 @@ import java.util.HashMap;
 
 public class QuestionsRoundTwo {
     private HashMap<String,String> roundTwoQuestions = new HashMap<>();
-    private final String QUESTION1 = "R2Q1";
-    private final String QUESTION2 = "R2Q2";
-    private final String QUESTION3 = "R2Q3";
 
-    private final String ANSWER1 = "R2A1";
-    private final String ANSWER2 = "R2A2";
-    private final String ANSWER3 = "R2A3";
+    private final String QUESTION1 = "I have 4 legs and a tail. I have whiskers. People like to keep me as a pet. What am I?";
+    private final String QUESTION2 = "I am a bird. I can swim but I can’t fly. I am black and white. What am I?";
+    private final String QUESTION3 = "I am a big cat. I have big sharp teeth. I have orange fur and black stripes. What am I?";
 
+    private final String ANSWER1 = "cat";
+    private final String ANSWER2 = "penguin";
+    private final String ANSWER3 = "tiger";
 
 
     public QuestionsRoundTwo() {

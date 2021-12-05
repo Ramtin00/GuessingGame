@@ -1,17 +1,17 @@
 package com.company;
-
 import java.util.HashMap;
-import java.util.Map;
+
 
 public class QuestionsRoundThree {
     private HashMap<String,String> roundThreeQuestions = new HashMap<>();
-    private final String QUESTION1 = "R3Q1";
-    private final String QUESTION2 = "R3Q2";
-    private final String QUESTION3 = "R3Q3";
 
-    private final String ANSWER1 = "R3A1";
-    private final String ANSWER2 = "R3A2";
-    private final String ANSWER3 = "R3A3";
+    private final String QUESTION1 = "What river runs through Baghdad?";
+    private final String QUESTION2 = "In what country can you visit Machu Picchu?";
+    private final String QUESTION3 = "Which African nation has the most pyramids?";
+
+    private final String ANSWER1 = "Tigris";
+    private final String ANSWER2 = "Peru";
+    private final String ANSWER3 = "Sudan";
 
 
 

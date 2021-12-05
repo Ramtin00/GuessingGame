@@ -3,7 +3,7 @@ import java.util.HashMap;
 
 
 public class QuestionsRoundOne {
-    private final HashMap<String,String> roundOneQuestions = new HashMap<>();
+    private HashMap<String,String> roundOneQuestions = new HashMap<>();
 
     private final String QUESTION1 = "What goes up and down, but always remains in the same place?";
     private final String QUESTION2 = "What city do The Beatles come from?";
