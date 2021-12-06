@@ -1,9 +1,14 @@
 package com.company;
 
-public class Main {
+import java.io.IOException;
 
-    public static void main(String[] args) {
+public class Main {
+        
+    public static void main(String[] args) throws IOException {
 	// This is the development branch
+        Rebus rebus = new Rebus();
+
+        //AdultGame adultGame = new AdultGame();
 
 
 
