@@ -7,20 +7,9 @@ import java.awt.event.ActionListener;
 import java.util.Objects;
 
 public class AdultGame implements ActionListener {
-
-
-
-
-
-
     ImageIcon winner = new ImageIcon("winner.jpg");
-
-
-
-
     String[] questions = {
             "Vad heter jag","Hur gammal är jag"
-
     };
 
     String [] answers = {
