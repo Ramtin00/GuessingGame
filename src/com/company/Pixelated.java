@@ -39,22 +39,35 @@ public class Pixelated implements ActionListener {
 
     public Pixelated() throws IOException {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600,650);
+        frame.setSize(1000,1150);
         frame.setLayout(null);
-        frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("src/pictures/backgroundPicture.jpg")))));
+        frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("src/pictures/backgroundsPic.jpg")))));
 
 
 
-        questionLabel.setBounds(200,-50,300,600);
+        questionLabel.setBounds(185,-50,300,600);
         frame.add(questionLabel, BorderLayout.CENTER);
         //  questionLabel.setIcon(imageBar);
-        submitButton.setBounds(325,400,200,100);
-        inputText.setBounds(225,325,200,25);
+
+        submitButton.setBounds(300,350,200,25);
+        submitButton.setBackground(new Color(59, 89, 182));
+        submitButton.setPreferredSize(new Dimension(20,20));
+        submitButton.setForeground(Color.WHITE);
+        submitButton.setFocusPainted(false);
+        submitButton.setFont(new Font("Tahoma", Font.BOLD, 12));
+        submitButton.addActionListener(this);
+
+        inputText.setBounds(170,-50,400,400);
         rounds.setBounds(750, 600, 200,200);
-        checkAnswer.setBounds(100,400,200,100);
+
+        checkAnswer.setBounds(100,350,200,25);
+        checkAnswer.setBackground(new Color(59, 89, 182));
+        checkAnswer.setPreferredSize(new Dimension(200,200));
+        checkAnswer.setForeground(Color.WHITE);
+        checkAnswer.setFocusPainted(false);
+        checkAnswer.setFont(new Font("Tahoma", Font.BOLD, 12));
         checkAnswer.addActionListener(this);
-        submitButton.setBackground(Color.LIGHT_GRAY);
-        checkAnswer.setBackground(Color.LIGHT_GRAY);
+
         second = 0;
         timer();
         timer.start();
@@ -65,11 +78,12 @@ public class Pixelated implements ActionListener {
         frame.add(submitButton);
         frame.add(rounds);
         frame.add(timerLabel);
+        frame.setLocationRelativeTo(null);
         frame.setResizable(false);
-        timerLabel.setBounds(225,-50,300,400);
+        timerLabel.setBounds(170,-50,400,400);
         timerLabel.setFont(font1);
 
-        submitButton.addActionListener(this);
+
 
         frame.setVisible(true);
         nextQuestion();
@@ -77,8 +91,9 @@ public class Pixelated implements ActionListener {
 
 
     public void nextQuestion() throws IOException {
-        submitButton.setBackground(Color.LIGHT_GRAY);
-        checkAnswer.setBackground(Color.LIGHT_GRAY);
+        inputText.setText("Type your answer here");
+        submitButton.setBackground(new Color(59, 89, 182));;
+        checkAnswer.setBackground(new Color(59, 89, 182));
         if(index>=total_questions) {
 
             results();
@@ -141,18 +156,18 @@ public class Pixelated implements ActionListener {
 
         if (e.getSource() == checkAnswer) {
             if (Objects.equals(inputText.getText(), answers[index])) {
-                submitButton.setBackground(Color.GREEN);
+                submitButton.setBackground(new Color(32, 184, 96));
             }
             else {
-                submitButton.setBackground(Color.RED);
+                submitButton.setBackground(new Color(231, 76, 60));
             }
         }
 
         if(e.getSource()==submitButton) {
-            if(submitButton.getBackground().equals(Color.LIGHT_GRAY)) {
+            if(submitButton.getBackground().equals(new Color(231, 76, 60))) {
                 JOptionPane.showMessageDialog(null, "Please check your answer");
             }
-            if (submitButton.getBackground().equals(Color.GREEN)) {
+            if (submitButton.getBackground().equals(new Color(32, 184, 96))) {
                 correctGuesses++;
                 index++;
                 try {
@@ -168,6 +183,7 @@ public class Pixelated implements ActionListener {
         displayAnswer();
 
     }
+
     public void timer() {
         timer = new Timer(1000, new ActionListener() {
             @Override
@@ -178,3 +194,4 @@ public class Pixelated implements ActionListener {
         });
     }
 }
+

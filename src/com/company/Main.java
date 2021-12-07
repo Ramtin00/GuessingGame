@@ -6,10 +6,11 @@ public class Main {
         
     public static void main(String[] args) throws IOException {
 	// This is the development branch
-        Rebus rebus = new Rebus();
+       //Rebus rebus = new Rebus();
 
         //AdultGame adultGame = new AdultGame();
 
+        new Pixelated();
 
 
         //Pushed version
