@@ -9,12 +9,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-public class Rebus implements ActionListener {
-    ImageIcon happy = new ImageIcon("src/pictures/happy.png");
-    ImageIcon rebus = new ImageIcon("src/pictures/rebus.png");
-    ImageIcon ape = new ImageIcon("src/pictures/ape.png");
-    ImageIcon sadSax = new ImageIcon("src/pictures/sadSax.png");
-    ImageIcon winner = new ImageIcon("src/pictures/winner.jpg");
+public class Pixelated implements ActionListener {
+    ImageIcon happy = new ImageIcon("");
+    ImageIcon rebus = new ImageIcon("");
+    ImageIcon ape = new ImageIcon("");
+    ImageIcon sadSax = new ImageIcon("");
+    ImageIcon winner = new ImageIcon("");
 
     ImageIcon[] questions = { sadSax,happy, rebus,ape };
     String [] answers = { "sad","happy", "rebus","ape" };
@@ -37,7 +37,7 @@ public class Rebus implements ActionListener {
     Font font1 = new Font("Arial", Font.PLAIN,70);
 
 
-    public Rebus() throws IOException {
+    public Pixelated() throws IOException {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600,650);
         frame.setLayout(null);
@@ -45,29 +45,16 @@ public class Rebus implements ActionListener {
 
 
 
-        questionLabel.setBounds(185,-50,300,600);
+        questionLabel.setBounds(200,-50,300,600);
         frame.add(questionLabel, BorderLayout.CENTER);
-      //  questionLabel.setIcon(imageBar);
-
-        submitButton.setBounds(300,350,200,25);
-        submitButton.setBackground(new Color(59, 89, 182));
-        submitButton.setPreferredSize(new Dimension(20,20));
-        submitButton.setForeground(Color.WHITE);
-        submitButton.setFocusPainted(false);
-        submitButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-        submitButton.addActionListener(this);
-
-        inputText.setBounds(185,325,200,25);
+        //  questionLabel.setIcon(imageBar);
+        submitButton.setBounds(325,400,200,100);
+        inputText.setBounds(225,325,200,25);
         rounds.setBounds(750, 600, 200,200);
-
-        checkAnswer.setBounds(100,350,200,25);
-        checkAnswer.setBackground(new Color(59, 89, 182));
-        checkAnswer.setPreferredSize(new Dimension(200,200));
-        checkAnswer.setForeground(Color.WHITE);
-        checkAnswer.setFocusPainted(false);
-        checkAnswer.setFont(new Font("Tahoma", Font.BOLD, 12));
+        checkAnswer.setBounds(100,400,200,100);
         checkAnswer.addActionListener(this);
-
+        submitButton.setBackground(Color.LIGHT_GRAY);
+        checkAnswer.setBackground(Color.LIGHT_GRAY);
         second = 0;
         timer();
         timer.start();
@@ -78,12 +65,11 @@ public class Rebus implements ActionListener {
         frame.add(submitButton);
         frame.add(rounds);
         frame.add(timerLabel);
-        frame.setLocationRelativeTo(null);
         frame.setResizable(false);
-        timerLabel.setBounds(170,-50,400,400);
+        timerLabel.setBounds(225,-50,300,400);
         timerLabel.setFont(font1);
 
-
+        submitButton.addActionListener(this);
 
         frame.setVisible(true);
         nextQuestion();
@@ -91,9 +77,8 @@ public class Rebus implements ActionListener {
 
 
     public void nextQuestion() throws IOException {
-        inputText.setText("Type your answer here");
-        submitButton.setBackground(new Color(59, 89, 182));;
-        checkAnswer.setBackground(new Color(59, 89, 182));
+        submitButton.setBackground(Color.LIGHT_GRAY);
+        checkAnswer.setBackground(Color.LIGHT_GRAY);
         if(index>=total_questions) {
 
             results();
@@ -127,12 +112,12 @@ public class Rebus implements ActionListener {
         //questionLabel.setIcon(winner);
         timer.stop();
         frame.setIconImage(winner.getImage());
-       // timerLabel.setText("Total tid: " + second);
+        // timerLabel.setText("Total tid: " + second);
         timerLabel.setText("Total time: ");
         questionLabel.setIcon(null);
         questionLabel.setFont(font1);
         questionLabel.setText(second + " sec");
-       // questionLabel.setBounds(0,0,600,800);
+        // questionLabel.setBounds(0,0,600,800);
         //frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("winner.jpg")))));
         playAgain.setBounds(225,500,200,100);
         frame.add(playAgain);
@@ -156,18 +141,18 @@ public class Rebus implements ActionListener {
 
         if (e.getSource() == checkAnswer) {
             if (Objects.equals(inputText.getText(), answers[index])) {
-                submitButton.setBackground(new Color(32, 184, 96));
+                submitButton.setBackground(Color.GREEN);
             }
             else {
-                submitButton.setBackground(new Color(231, 76, 60));
+                submitButton.setBackground(Color.RED);
             }
         }
 
         if(e.getSource()==submitButton) {
-            if(submitButton.getBackground().equals(new Color(231, 76, 60))) {
+            if(submitButton.getBackground().equals(Color.LIGHT_GRAY)) {
                 JOptionPane.showMessageDialog(null, "Please check your answer");
             }
-            if (submitButton.getBackground().equals(new Color(32, 184, 96))) {
+            if (submitButton.getBackground().equals(Color.GREEN)) {
                 correctGuesses++;
                 index++;
                 try {
@@ -183,7 +168,6 @@ public class Rebus implements ActionListener {
         displayAnswer();
 
     }
-
     public void timer() {
         timer = new Timer(1000, new ActionListener() {
             @Override
@@ -194,4 +178,3 @@ public class Rebus implements ActionListener {
         });
     }
 }
-
