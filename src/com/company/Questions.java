@@ -4,6 +4,14 @@ import java.util.HashMap;
 public class Questions {
 
     HashMap<String, HashMap<String, String>> allQuestions = new HashMap<>();
+    Questions question = new Questions();
+    QuestionsRoundOne roundOneQuestions = new QuestionsRoundOne();
+    QuestionsRoundTwo roundTwoQuestions = new QuestionsRoundTwo();
+    QuestionsRoundThree roundThreeQuestions = new QuestionsRoundThree();
+
+    HashMap<String, String> r1Map = question.getQuestionsAndAnswersForRoundOne();
+    HashMap<String, String> r2Map = question.getQuestionsAndAnswersForRoundTwo();
+    HashMap<String, String> r3Map = question.getQuestionsAndAnswersForRoundThree();
 
     public Questions() {
         QuestionsRoundOne roundOne = new QuestionsRoundOne();
