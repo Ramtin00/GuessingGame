@@ -10,23 +10,40 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Pixelated implements ActionListener {
-    ImageIcon happy = new ImageIcon("");
-    ImageIcon rebus = new ImageIcon("");
-    ImageIcon ape = new ImageIcon("");
-    ImageIcon sadSax = new ImageIcon("");
-    ImageIcon winner = new ImageIcon("");
+    ImageIcon happy = new ImageIcon("src/pictures/happy.png");
+    ImageIcon rebus = new ImageIcon("src/pictures/rebus.png");
+    ImageIcon ape = new ImageIcon("src/pictures/ape.png");
+    ImageIcon obama = new ImageIcon("src/pictures/obamaPix.png");
+    ImageIcon winner = new ImageIcon("src/pictures/winner.jpg");
 
-    ImageIcon[] questions = { sadSax,happy, rebus,ape };
-    String [] answers = { "sad","happy", "rebus","ape" };
+    ImageIcon[] questions = {
+            obama,happy, rebus,ape
+
+    };
+    String [] answers = {
+            "obama","happy", "rebus","ape"
+    };
+
+    String [] hints = {
+            "o _ a _ m _", "h _ p _ y", "r e _ _ s", "a _ e"
+    };
+
+    String guess;
+    String answer;
     int index;
     int correctGuesses = 0;
     int total_questions = questions.length;
+    int result;
+    int seconds = 10;
     int second;
     Timer timer;
     int roundNumber = 1;
 
     JFrame frame = new JFrame();
     JLabel questionLabel = new JLabel();
+    JLabel timeLabel = new JLabel();
+    JLabel secondsLeft = new JLabel();
+    JTextField numberRight = new JTextField();
     JButton submitButton = new JButton("Submit");
     JTextArea inputText = new JTextArea("Type answer here");
     JTextArea rightAnswer = new JTextArea();
@@ -34,68 +51,72 @@ public class Pixelated implements ActionListener {
     JButton checkAnswer = new JButton("Check answer");
     JButton playAgain = new JButton("Play Again");
     JLabel timerLabel = new JLabel();
-    Font font1 = new Font("Arial", Font.PLAIN,70);
+    Font font1 = new Font("Cooper Black", Font.BOLD,90);
+    JButton hintButton = new JButton("Press for hint");
+    JLabel hintLabel = new JLabel("");
 
 
     public Pixelated() throws IOException {
+        //Frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000,1150);
+        frame.setSize(600,650);
         frame.setLayout(null);
-        frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("src/pictures/backgroundsPic.jpg")))));
-
-
-
-        questionLabel.setBounds(185,-50,300,600);
-        frame.add(questionLabel, BorderLayout.CENTER);
-        //  questionLabel.setIcon(imageBar);
-
-        submitButton.setBounds(300,350,200,25);
-        submitButton.setBackground(new Color(59, 89, 182));
-        submitButton.setPreferredSize(new Dimension(20,20));
-        submitButton.setForeground(Color.WHITE);
-        submitButton.setFocusPainted(false);
-        submitButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-        submitButton.addActionListener(this);
-
-        inputText.setBounds(170,-50,400,400);
-        rounds.setBounds(750, 600, 200,200);
-
-        checkAnswer.setBounds(100,350,200,25);
-        checkAnswer.setBackground(new Color(59, 89, 182));
-        checkAnswer.setPreferredSize(new Dimension(200,200));
-        checkAnswer.setForeground(Color.WHITE);
-        checkAnswer.setFocusPainted(false);
-        checkAnswer.setFont(new Font("Tahoma", Font.BOLD, 12));
-        checkAnswer.addActionListener(this);
-
-        second = 0;
-        timer();
-        timer.start();
-
-        rounds.setText("Round " + (roundNumber));
+        frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("src/pictures/BackgroundPict.jpg")))));
         frame.add(checkAnswer);
         frame.add(inputText);
         frame.add(submitButton);
+        frame.add(hintButton);
         frame.add(rounds);
         frame.add(timerLabel);
-        frame.setLocationRelativeTo(null);
         frame.setResizable(false);
-        timerLabel.setBounds(170,-50,400,400);
-        timerLabel.setFont(font1);
-
-
-
+        frame.add(questionLabel, BorderLayout.CENTER);
+        frame.add(hintLabel);
         frame.setVisible(true);
+
+        //Bounds
+        questionLabel.setBounds(200,-50,300,600);
+        submitButton.setBounds(325,400,200,100);
+        inputText.setBounds(225,370,200,25);
+        rounds.setBounds(750, 600, 200,200);
+        checkAnswer.setBounds(100,400,200,100);
+        timerLabel.setBounds(110,-120,400,400);
+        hintLabel.setBounds(225,-150,400,400);
+        hintButton.setBounds(200,500,200,100);
+        frame.setLocationRelativeTo(null);
+
+        //Colors
+        hintButton.setBackground(new Color(169, 223, 191));
+        submitButton.setBackground(new Color(59, 89, 182));
+        checkAnswer.setBackground(new Color(59, 89, 182));
+
+        //Timer
+        second = 0;
+        timer();
+        timer.start();
+        timerLabel.setFont(font1);
+        timerLabel.setForeground(new Color(27, 38, 49 ));
+
+        //Hint font
+        hintLabel.setFont(font1);
+
+        //Actionlisteners
+        hintButton.addActionListener(this);
+        checkAnswer.addActionListener(this);
+        submitButton.addActionListener(this);
+
+        //not Focusable
+        hintButton.setFocusable(false);
+        checkAnswer.setFocusable(false);
+        submitButton.setFocusable(false);
+
+        //Metod för nästa fråga
         nextQuestion();
     }
-
-
     public void nextQuestion() throws IOException {
         inputText.setText("Type your answer here");
-        submitButton.setBackground(new Color(59, 89, 182));;
-        checkAnswer.setBackground(new Color(59, 89, 182));
+        submitButton.setBackground(new Color(59, 89, 182));
+        checkAnswer.setBackground((new Color(59, 89, 182)));
         if(index>=total_questions) {
-
             results();
             inputText.setVisible(false);
             rounds.setVisible(false);
@@ -103,73 +124,71 @@ public class Pixelated implements ActionListener {
         else {
             questionLabel.setIcon(questions[index]);
             rightAnswer.setText(answers[index]);
-
-
         }
-
-
-
     }
-    public void displayAnswer(){
+    //  public void displayAnswer()
+    {
         Timer pause = new Timer(2000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
                 submitButton.setForeground(new Color(25,255,0));
-
-
             }
         });
-
-
     }
     public void results() throws IOException {
-
-        //questionLabel.setIcon(winner);
         timer.stop();
         frame.setIconImage(winner.getImage());
-        // timerLabel.setText("Total tid: " + second);
         timerLabel.setText("Total time: ");
         questionLabel.setIcon(null);
         questionLabel.setFont(font1);
         questionLabel.setText(second + " sec");
-        // questionLabel.setBounds(0,0,600,800);
-        //frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("winner.jpg")))));
         playAgain.setBounds(225,500,200,100);
         frame.add(playAgain);
         playAgain.addActionListener(this);
         submitButton.setVisible(false);
         checkAnswer.setVisible(false);
+        hintButton.setVisible(false);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        //If hintbutton pressed show hint for right question
+        if (e.getSource() == hintButton){
+            hintLabel.setText(hints[index]);
+        }
+        //If play again button pressed, play the game again
         if (e.getSource() == playAgain)
         {
             frame.dispose();
-
-
             try {
                 new Rebus();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
-
-        if (e.getSource() == checkAnswer) {
-            if (Objects.equals(inputText.getText(), answers[index])) {
-                submitButton.setBackground(new Color(32, 184, 96));
+        //If check answer button pressed make submit button green, if wrong make it red
+        if (e.getSource() == checkAnswer)
+        {
+            if (Objects.equals(inputText.getText(), answers[index])) //Dubbelkolla
+            {
+                submitButton.setBackground(Color.GREEN);
             }
-            else {
-                submitButton.setBackground(new Color(231, 76, 60));
+            else
+            {
+                submitButton.setBackground(Color.RED);
             }
         }
-
-        if(e.getSource()==submitButton) {
-            if(submitButton.getBackground().equals(new Color(231, 76, 60))) {
+        //If submit button pressed, submit your answer to move on to the next question
+        if(e.getSource()==submitButton)
+        {
+            if(submitButton.getBackground().equals(Color.LIGHT_GRAY))
+            {
                 JOptionPane.showMessageDialog(null, "Please check your answer");
             }
-            if (submitButton.getBackground().equals(new Color(32, 184, 96))) {
+            if (submitButton.getBackground().equals(Color.GREEN)) //Dubbelkolla
+            {
                 correctGuesses++;
                 index++;
+                hintLabel.setText("");
                 try {
                     nextQuestion();
                 } catch (IOException ex) {
@@ -177,13 +196,10 @@ public class Pixelated implements ActionListener {
                 }
                 roundNumber = roundNumber+1;
                 rounds.setText("Round " + (roundNumber));
-                displayAnswer();
             }
         }
-        displayAnswer();
-
     }
-
+    //Timer method
     public void timer() {
         timer = new Timer(1000, new ActionListener() {
             @Override
@@ -194,4 +210,3 @@ public class Pixelated implements ActionListener {
         });
     }
 }
-
