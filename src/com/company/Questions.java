@@ -37,7 +37,4 @@ public class Questions {
     public HashMap<String,String> getQuestionsAndAnswersForRoundThree(){
         return new HashMap<>(allQuestions.get("Round 3"));
     }
-
-
-
 }
