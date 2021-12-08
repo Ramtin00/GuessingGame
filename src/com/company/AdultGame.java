@@ -24,10 +24,7 @@ public class AdultGame implements ActionListener {
     int result;
     int second;
     Timer timer;
-
     int roundNumber = 1;
-
-
 
     JFrame frame = new JFrame();
     JLabel questionLabel = new JLabel();
@@ -41,13 +38,6 @@ public class AdultGame implements ActionListener {
     JButton checkAnswer = new JButton("Check answer");
     JButton playAgain = new JButton("Play Again");
     Font font1 = new Font("Arial", Font.PLAIN,40);
-
-
-
-
-
-
-
 
 
     public AdultGame(){
@@ -73,15 +63,7 @@ public class AdultGame implements ActionListener {
         frame.add(submitButton);
         frame.add(rounds);
 
-
-
         submitButton.addActionListener(this);
-
-
-
-
-
-
 
 
 
@@ -156,9 +138,6 @@ public class AdultGame implements ActionListener {
                 submitButton.setBackground(Color.GREEN);
 
 
-
-
-
             }
             else
             {
@@ -187,13 +166,10 @@ public class AdultGame implements ActionListener {
                 rounds.setText("Round " + (roundNumber));
                 displayAnswer();
 
-
             }
-
 
         }
         displayAnswer();
-
     }
     public void timer() {
         timer = new Timer(1000, new ActionListener() {
