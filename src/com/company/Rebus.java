@@ -172,10 +172,12 @@ public class Rebus implements ActionListener {
             if (inputText.getText().equalsIgnoreCase(answers[index])) //Dubbelkolla
             {
                 submitButton.setBackground(Color.GREEN);
+                submitButton.setOpaque(true);
             }
             else
             {
                 submitButton.setBackground(Color.RED);
+                submitButton.setOpaque(true);
             }
         }
         //If submit button pressed, submit your answer to move on to the next question

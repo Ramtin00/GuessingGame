@@ -21,14 +21,18 @@ public class AdultGame implements ActionListener {
 
 
 
-    String[] questions = {
+    /*String[] questions = {
             "Vad heter jag","Hur gammal är jag"
 
-    };
+    };*/
 
-    String [] answers = {
+    QuestionsRoundOne roundOne = new QuestionsRoundOne();
+    String[] questions = {roundOne.getQUESTION1(), roundOne.getQUESTION2(), roundOne.getQUESTION3()};
+
+    /*String [] answers = {
             "Niklas","25"
-    };
+    };*/
+    String[] answers = {roundOne.getANSWER1(), roundOne.getANSWER2(), roundOne.getANSWER3()};
 
     int index;
     int correctGuesses = 0;

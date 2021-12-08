@@ -34,11 +34,14 @@ public class UserInputPanel extends JPanel implements ActionListener {
                 ex.printStackTrace();
             }
         } else {
-            try {
-                AdultGame AdultGame = new AdultGame();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+            removeAll();
+            AdultGame_Version_2 adultGame = new AdultGame_Version_2();
+            add(adultGame.getGamePanel());
+
+            revalidate();
+            repaint();
+
+            //AdultGame.getAdultGame();
         }
     }
 
