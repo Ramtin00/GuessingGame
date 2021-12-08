@@ -1,6 +1,7 @@
 package com.company;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Frame extends JFrame {
 
@@ -16,6 +17,7 @@ public class Frame extends JFrame {
 
         userInputPanel.add(userInput);
         add(userInputPanel);
+        setSize(new Dimension(600, 200));
         setVisible(true);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
