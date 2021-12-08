@@ -34,7 +34,11 @@ public class UserInputPanel extends JPanel implements ActionListener {
                 ex.printStackTrace();
             }
         } else {
-            AdultGame AdultGame = new AdultGame();
+            try {
+                AdultGame AdultGame = new AdultGame();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
