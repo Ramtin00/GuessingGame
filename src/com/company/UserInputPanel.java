@@ -3,6 +3,7 @@ package com.company;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class UserInputPanel extends JPanel implements ActionListener {
     private String userName;
@@ -26,6 +27,15 @@ public class UserInputPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         setUserName(userNameInput.getText());
         setUserAge(Integer.parseInt(userAgeInput.getText()));
+        if (userAge < 18) {
+            try {
+                Rebus rebus = new Rebus();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            AdultGame AdultGame = new AdultGame();
+        }
     }
 
     public void setUserName(String userName) {
@@ -34,5 +44,13 @@ public class UserInputPanel extends JPanel implements ActionListener {
 
     public void setUserAge(int userAge) {
         this.userAge = userAge;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public int getUserAge() {
+        return userAge;
     }
 }
