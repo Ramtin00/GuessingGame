@@ -1,9 +1,12 @@
 package com.company;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.Objects;
 
 public class AdultGame implements ActionListener {
@@ -27,12 +30,9 @@ public class AdultGame implements ActionListener {
             "Niklas","25"
     };
 
-    String guess;
-    String answer;
     int index;
     int correctGuesses = 0;
     int total_questions = questions.length;
-    int result;
     int second;
     Timer timer;
 
@@ -42,7 +42,7 @@ public class AdultGame implements ActionListener {
 
     JFrame frame = new JFrame();
     JLabel questionLabel = new JLabel();
-    JLabel timeLabel = new JLabel();
+    JLabel timerLabel = new JLabel();
     JLabel secondsLeft = new JLabel();
     JTextField numberRight = new JTextField();
     JButton submitButton = new JButton("Submit");
@@ -51,7 +51,7 @@ public class AdultGame implements ActionListener {
     JLabel rounds = new JLabel();
     JButton checkAnswer = new JButton("Check answer");
     JButton playAgain = new JButton("Play Again");
-    Font font1 = new Font("Arial", Font.PLAIN,40);
+    Font font1 = new Font("", Font.BOLD,40);
 
 
 
@@ -61,14 +61,19 @@ public class AdultGame implements ActionListener {
 
 
 
-    public AdultGame(){
+    public AdultGame() throws IOException {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600,600);
         frame.setLayout(null);
+        frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("backgroundAdultGame.jpg")))));
+        frame.add(timerLabel);
+        timerLabel.setBounds(225,-50,400,400);
+
 
         questionLabel.setBounds(200,-50,500,600);
         frame.add(questionLabel, BorderLayout.CENTER);
         questionLabel.setFont(font1);
+        questionLabel.setForeground(Color.BLACK);
         //  questionLabel.setIcon(imageBar);
         submitButton.setBounds(325,400,200,100);
         inputText.setBounds(225,325,200,25);
@@ -83,6 +88,9 @@ public class AdultGame implements ActionListener {
         frame.add(inputText);
         frame.add(submitButton);
         frame.add(rounds);
+
+        timer();
+        timer.start();
 
 
 
@@ -136,7 +144,7 @@ public class AdultGame implements ActionListener {
     public void results(){
 
         questionLabel.setText("");
-        questionLabel.setIcon(winner);
+
         playAgain.setBounds(450,800,200,100);
         frame.add(playAgain);
         playAgain.addActionListener(this);
@@ -155,7 +163,11 @@ public class AdultGame implements ActionListener {
             frame.dispose();
 
 
-            new AdultGame();
+            try {
+                new AdultGame();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
 
         if (e.getSource() == checkAnswer)
