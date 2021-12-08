@@ -75,7 +75,6 @@ public class Rebus implements ActionListener {
         frame.setVisible(true);
 
         //Bounds
-
         questionLabel.setBounds(200,-50,300,600);
         submitButton.setBounds(325,400,200,100);
         inputText.setBounds(225,325,200,25);
