@@ -10,11 +10,11 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Rebus implements ActionListener {
-    ImageIcon happy = new ImageIcon("happy.png");
-    ImageIcon rebus = new ImageIcon("rebus.png");
-    ImageIcon ape = new ImageIcon("ape.png");
-    ImageIcon sadSax = new ImageIcon("sadSax.png");
-    ImageIcon winner = new ImageIcon("winner.jpg");
+    ImageIcon happy = new ImageIcon("src/pictures/happy.png");
+    ImageIcon rebus = new ImageIcon("src/pictures/rebus.png");
+    ImageIcon ape = new ImageIcon("src/pictures/ape.png");
+    ImageIcon sadSax = new ImageIcon("src/pictures/sadSax.png");
+    ImageIcon winner = new ImageIcon("src/pictures/winner.jpg");
 
    ImageIcon[] questions = {
            sadSax,happy, rebus,ape
@@ -62,7 +62,7 @@ public class Rebus implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600,650);
         frame.setLayout(null);
-        frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("backgroundPicture.jpg")))));
+        frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("src/pictures/backgroundPicture.jpg")))));
         frame.add(checkAnswer);
         frame.add(inputText);
         frame.add(submitButton);

@@ -65,7 +65,7 @@ public class AdultGame implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600,600);
         frame.setLayout(null);
-        frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("backgroundAdultGame.jpg")))));
+        frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("src/pictures/backgroundAdultGame.jpg")))));
         frame.add(timerLabel);
         timerLabel.setBounds(225,-50,400,400);
 
