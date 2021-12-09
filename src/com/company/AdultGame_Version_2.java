@@ -1,7 +1,6 @@
 package com.company;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -72,13 +71,14 @@ public class AdultGame_Version_2 implements ActionListener {
             roundThree();
         }
 
+
     }
 
 
     public void roundOne() {
         if (question.getText().equals(roundOneQuestion1.getText())) {
             String answer = roundOneInput.getText();
-            if (answer.equals(roundOneAs[0])) {
+            if (answer.trim().equalsIgnoreCase(roundOneAs[0])) {
                 roundOnePanel.removeAll();
                 question.setText(roundOneQuestion2.getText());
                 quizText.setText("Round 1, Question 2");
@@ -91,7 +91,7 @@ public class AdultGame_Version_2 implements ActionListener {
             }
         } else if (question.getText().equals(roundOneQuestion2.getText())) {
             String answer = roundOneInput.getText();
-            if (answer.equals(roundOneAs[1])) {
+            if (answer.trim().equalsIgnoreCase(roundOneAs[1])) {
                 roundOnePanel.removeAll();
                 question.setText(roundOneQuestion3.getText());
                 quizText.setText("Round 1, Question 3");
