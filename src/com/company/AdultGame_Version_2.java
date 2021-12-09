@@ -75,7 +75,7 @@ public class AdultGame_Version_2 implements ActionListener {
     public void roundOne() {
         if (question.getText().equals(roundOneQuestion1.getText())) {
             String answer = roundOneInput.getText();
-            if (answer.equals(roundOneAs[0])) {
+            if (answer.trim().equalsIgnoreCase(roundOneAs[0])) {
                 roundOnePanel.removeAll();
                 question.setText(roundOneQuestion2.getText());
                 roundOnePanel.add(question, BorderLayout.NORTH);
@@ -86,7 +86,18 @@ public class AdultGame_Version_2 implements ActionListener {
             }
         } else if (question.getText().equals(roundOneQuestion2.getText())) {
             String answer = roundOneInput.getText();
-            if (answer.equals(roundOneAs[1])) {
+            if (answer.trim().equalsIgnoreCase(roundOneAs[1])) {
+                roundOnePanel.removeAll();
+                question.setText(roundOneQuestion3.getText());
+                roundOnePanel.add(question, BorderLayout.NORTH);
+                roundOneInput.setText("Enter your answer here");
+                roundOnePanel.add(roundOneInput, BorderLayout.CENTER);
+                roundOnePanel.revalidate();
+                roundOnePanel.repaint();
+            }
+        } else if (question.getText().equals(roundOneQuestion3.getText())) {
+            String answer = roundOneInput.getText();
+            if (answer.trim().equalsIgnoreCase(roundOneAs[2])) {
                 roundOnePanel.removeAll();
                 question.setText(roundOneQuestion3.getText());
                 roundOnePanel.add(question, BorderLayout.NORTH);
@@ -96,7 +107,6 @@ public class AdultGame_Version_2 implements ActionListener {
                 roundOnePanel.repaint();
             }
         }
+
     }
-
-
 }

@@ -151,7 +151,7 @@ public class Pixelated implements ActionListener {
         //If check answer button pressed make submit button green, if wrong make it red
         if (e.getSource() == checkAnswer)
         {
-            if (Objects.equals(inputText.getText(), answers[index])) //Dubbelkolla
+            if (inputText.getText().trim().equalsIgnoreCase(answers[index])) //Dubbelkolla
             {
                 submitButton.setBackground(new Color(88, 214, 141));
             }

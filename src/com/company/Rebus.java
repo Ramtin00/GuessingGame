@@ -168,7 +168,7 @@ public class Rebus implements ActionListener {
         //If check answer button pressed make submit button green, if wrong make it red
         if (e.getSource() == checkAnswer)
         {
-            if (inputText.getText().equalsIgnoreCase(answers[index])) //Dubbelkolla
+            if (inputText.getText().trim().equalsIgnoreCase(answers[index])) //Dubbelkolla
             {
                 submitButton.setBackground(Color.GREEN);
                 submitButton.setOpaque(true);
