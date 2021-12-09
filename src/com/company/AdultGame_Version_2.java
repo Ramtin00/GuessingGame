@@ -1,6 +1,7 @@
 package com.company;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +9,7 @@ import java.awt.event.ActionListener;
 public class AdultGame_Version_2 implements ActionListener {
 
     JPanel mainPanel = new JPanel();
-
+    JLabel quizText = new JLabel("Round 1, Question 1");
     JLabel question = new JLabel();
 
     QuestionsRoundOne roundOne = new QuestionsRoundOne();
@@ -31,15 +32,15 @@ public class AdultGame_Version_2 implements ActionListener {
     JTextField roundOneInput = new JTextField("Enter your answer here");
 
     JPanel roundTwoPanel = new JPanel();
-    JLabel roundTwoQuestion1 = new JLabel(roundOneQs[0]);
-    JLabel roundTwoQuestion2 = new JLabel(roundOneQs[1]);
-    JLabel roundTwoQuestion3 = new JLabel(roundOneQs[2]);
+    JLabel roundTwoQuestion1 = new JLabel(roundTwoQs[0]);
+    JLabel roundTwoQuestion2 = new JLabel(roundTwoQs[1]);
+    JLabel roundTwoQuestion3 = new JLabel(roundTwoQs[2]);
     JTextField roundTwoInput = new JTextField("Enter your answer here");
 
     JPanel roundThreePanel = new JPanel();
-    JLabel roundThreeQuestion1 = new JLabel(roundOneQs[0]);
-    JLabel roundThreeQuestion2 = new JLabel(roundOneQs[1]);
-    JLabel roundThreeQuestion3 = new JLabel(roundOneQs[2]);
+    JLabel roundThreeQuestion1 = new JLabel(roundThreeQs[0]);
+    JLabel roundThreeQuestion2 = new JLabel(roundThreeQs[1]);
+    JLabel roundThreeQuestion3 = new JLabel(roundThreeQs[2]);
     JTextField roundThreeInput = new JTextField("Enter your answer here");
 
     JButton submit = new JButton("Submit");
@@ -50,8 +51,9 @@ public class AdultGame_Version_2 implements ActionListener {
 
         question.setText(roundOneQuestion1.getText());
 
-        roundOnePanel.add(question, BorderLayout.NORTH);
-        roundOnePanel.add(roundOneInput, BorderLayout.CENTER);
+        roundOnePanel.add(quizText, BorderLayout.NORTH);
+        roundOnePanel.add(question, BorderLayout.CENTER);
+        roundOnePanel.add(roundOneInput, BorderLayout.SOUTH);
 
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(roundOnePanel, BorderLayout.NORTH);
@@ -66,8 +68,9 @@ public class AdultGame_Version_2 implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submit) {
             roundOne();
+            roundTwo();
+            roundThree();
         }
-
 
     }
 
@@ -78,9 +81,11 @@ public class AdultGame_Version_2 implements ActionListener {
             if (answer.equals(roundOneAs[0])) {
                 roundOnePanel.removeAll();
                 question.setText(roundOneQuestion2.getText());
-                roundOnePanel.add(question, BorderLayout.NORTH);
+                quizText.setText("Round 1, Question 2");
+                roundOnePanel.add(quizText, BorderLayout.NORTH);
+                roundOnePanel.add(question, BorderLayout.CENTER);
                 roundOneInput.setText("Enter your answer here");
-                roundOnePanel.add(roundOneInput, BorderLayout.CENTER);
+                roundOnePanel.add(roundOneInput, BorderLayout.SOUTH);
                 roundOnePanel.revalidate();
                 roundOnePanel.repaint();
             }
@@ -89,14 +94,112 @@ public class AdultGame_Version_2 implements ActionListener {
             if (answer.equals(roundOneAs[1])) {
                 roundOnePanel.removeAll();
                 question.setText(roundOneQuestion3.getText());
-                roundOnePanel.add(question, BorderLayout.NORTH);
+                quizText.setText("Round 1, Question 3");
+                roundOnePanel.add(quizText, BorderLayout.NORTH);
+                roundOnePanel.add(question, BorderLayout.CENTER);
                 roundOneInput.setText("Enter your answer here");
-                roundOnePanel.add(roundOneInput, BorderLayout.CENTER);
+                roundOnePanel.add(roundOneInput, BorderLayout.SOUTH);
                 roundOnePanel.revalidate();
                 roundOnePanel.repaint();
             }
         }
+
+
     }
 
 
+    public void roundTwo() {
+        if (question.getText().equals(roundOneQuestion3.getText())) {
+            String answer = roundOneInput.getText();
+            if (answer.equals(roundOneAs[2])) {
+                question.setText(roundTwoQuestion1.getText());
+                quizText.setText("Round 2, Question 1");
+                roundTwoPanel.setLayout(new BorderLayout());
+                roundTwoPanel.add(quizText, BorderLayout.NORTH);
+                roundTwoPanel.add(question, BorderLayout.CENTER);
+                roundTwoInput.setText("Enter your answer here");
+                roundTwoPanel.add(roundTwoInput, BorderLayout.SOUTH);
+                mainPanel.removeAll();
+
+                mainPanel.setLayout(new BorderLayout());
+                mainPanel.add(roundTwoPanel, BorderLayout.NORTH);
+
+                mainPanel.add(submit, BorderLayout.CENTER);
+                mainPanel.revalidate();
+                mainPanel.repaint();
+            }
+        } else if (question.getText().equals(roundTwoQuestion1.getText())) {
+            String answer = roundTwoInput.getText();
+            if (answer.equals(roundTwoAs[0])) {
+                question.setText(roundTwoQuestion2.getText());
+                quizText.setText("Round 2, Question 2");
+                roundTwoPanel.removeAll();
+                roundTwoPanel.setLayout(new BorderLayout());
+                roundTwoPanel.add(quizText, BorderLayout.NORTH);
+                roundTwoPanel.add(question, BorderLayout.CENTER);
+                roundTwoInput.setText("Enter your answer here");
+                roundTwoPanel.add(roundTwoInput, BorderLayout.SOUTH);
+                roundTwoPanel.revalidate();
+                roundTwoPanel.repaint();
+            }
+        } else if (question.getText().equals(roundTwoQuestion2.getText())) {
+            String answer = roundTwoInput.getText();
+            if (answer.equals(roundTwoAs[1])) {
+                question.setText(roundTwoQuestion3.getText());
+                quizText.setText("Round 2, Question 3");
+                roundTwoPanel.removeAll();
+                roundTwoPanel.setLayout(new BorderLayout());
+                roundTwoPanel.add(quizText, BorderLayout.NORTH);
+                roundTwoPanel.add(question, BorderLayout.CENTER);
+                roundTwoInput.setText("Enter your answer here");
+                roundTwoPanel.add(roundTwoInput, BorderLayout.SOUTH);
+                roundTwoPanel.revalidate();
+                roundTwoPanel.repaint();
+            }
+        } else if (question.getText().equals(roundTwoQuestion3.getText())) {
+            String answer = roundTwoInput.getText();
+            if (answer.equals(roundTwoAs[2])) {
+                question.setText(roundThreeQuestion1.getText());
+                quizText.setText("Round 3, Question 1");
+                roundThreePanel.setLayout(new BorderLayout());
+                roundThreePanel.add(quizText, BorderLayout.NORTH);
+                roundThreePanel.add(question, BorderLayout.CENTER);
+                roundThreeInput.setText("Enter your answer here");
+                roundThreePanel.add(roundThreeInput, BorderLayout.SOUTH);
+                mainPanel.removeAll();
+                mainPanel.setLayout(new BorderLayout());
+                mainPanel.add(roundThreePanel, BorderLayout.NORTH);
+                mainPanel.add(submit, BorderLayout.CENTER);
+            }
+        }
+
+    }
+
+    public void roundThree() {
+        if (question.getText().equals(roundThreeQuestion1.getText())) {
+            String answer = roundThreeInput.getText();
+            if (answer.equals(roundThreeAs[0])) {
+                question.setText(roundThreeQuestion2.getText());
+                quizText.setText("Round 3, Question 2");
+                roundThreePanel.removeAll();
+                roundThreePanel.setLayout(new BorderLayout());
+                roundThreePanel.add(quizText, BorderLayout.NORTH);
+                roundThreePanel.add(question, BorderLayout.CENTER);
+                roundThreeInput.setText("Enter your answer here");
+                roundThreePanel.add(roundThreeInput, BorderLayout.SOUTH);
+            }
+        } else if (question.getText().equals(roundThreeQuestion2.getText())) {
+            String answer = roundThreeInput.getText();
+            if (answer.equals(roundThreeAs[1])) {
+                question.setText(roundThreeQuestion3.getText());
+                quizText.setText("Round 3, Question 3");
+                roundThreePanel.removeAll();
+                roundThreePanel.setLayout(new BorderLayout());
+                roundThreePanel.add(quizText, BorderLayout.NORTH);
+                roundThreePanel.add(question, BorderLayout.CENTER);
+                roundThreeInput.setText("Enter your answer here");
+                roundThreePanel.add(roundThreeInput, BorderLayout.SOUTH);
+            }
+        }
+    }
 }
