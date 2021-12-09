@@ -110,7 +110,7 @@ public class AdultGame_Version_2 implements ActionListener {
     public void roundTwo() {
         if (question.getText().equals(roundOneQuestion3.getText())) {
             String answer = roundOneInput.getText();
-            if (answer.equals(roundOneAs[2])) {
+            if (answer.trim().equalsIgnoreCase(roundOneAs[2])) {
                 question.setText(roundTwoQuestion1.getText());
                 quizText.setText("Round 2, Question 1");
                 roundTwoPanel.setLayout(new BorderLayout());
@@ -129,7 +129,7 @@ public class AdultGame_Version_2 implements ActionListener {
             }
         } else if (question.getText().equals(roundTwoQuestion1.getText())) {
             String answer = roundTwoInput.getText();
-            if (answer.equals(roundTwoAs[0])) {
+            if (answer.trim().equalsIgnoreCase(roundTwoAs[0])) {
                 question.setText(roundTwoQuestion2.getText());
                 quizText.setText("Round 2, Question 2");
                 roundTwoPanel.removeAll();
@@ -143,7 +143,7 @@ public class AdultGame_Version_2 implements ActionListener {
             }
         } else if (question.getText().equals(roundTwoQuestion2.getText())) {
             String answer = roundTwoInput.getText();
-            if (answer.equals(roundTwoAs[1])) {
+            if (answer.trim().equalsIgnoreCase(roundTwoAs[1])) {
                 question.setText(roundTwoQuestion3.getText());
                 quizText.setText("Round 2, Question 3");
                 roundTwoPanel.removeAll();
@@ -157,7 +157,7 @@ public class AdultGame_Version_2 implements ActionListener {
             }
         } else if (question.getText().equals(roundTwoQuestion3.getText())) {
             String answer = roundTwoInput.getText();
-            if (answer.equals(roundTwoAs[2])) {
+            if (answer.trim().equalsIgnoreCase(roundTwoAs[2])) {
                 question.setText(roundThreeQuestion1.getText());
                 quizText.setText("Round 3, Question 1");
                 roundThreePanel.setLayout(new BorderLayout());
@@ -177,7 +177,7 @@ public class AdultGame_Version_2 implements ActionListener {
     public void roundThree() {
         if (question.getText().equals(roundThreeQuestion1.getText())) {
             String answer = roundThreeInput.getText();
-            if (answer.equals(roundThreeAs[0])) {
+            if (answer.trim().equalsIgnoreCase(roundThreeAs[0])) {
                 question.setText(roundThreeQuestion2.getText());
                 quizText.setText("Round 3, Question 2");
                 roundThreePanel.removeAll();
@@ -189,7 +189,7 @@ public class AdultGame_Version_2 implements ActionListener {
             }
         } else if (question.getText().equals(roundThreeQuestion2.getText())) {
             String answer = roundThreeInput.getText();
-            if (answer.equals(roundThreeAs[1])) {
+            if (answer.trim().equalsIgnoreCase(roundThreeAs[1])) {
                 question.setText(roundThreeQuestion3.getText());
                 quizText.setText("Round 3, Question 3");
                 roundThreePanel.removeAll();
