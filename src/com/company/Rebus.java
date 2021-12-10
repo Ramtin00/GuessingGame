@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 
 public class Rebus implements ActionListener {
     ImageIcon happy = new ImageIcon("src/pictures/happy.png");
