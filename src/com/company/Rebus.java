@@ -144,7 +144,7 @@ public class Rebus implements ActionListener, Game {
     }
     public void leaderboard(){
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\Jag\\IdeaProjects\\GuessingGame\\leaderboard.txt"));
+            BufferedWriter bw = new BufferedWriter(new FileWriter("GuessingGame"));
             bw.write(String.valueOf(second));
             bw.close();
         } catch (IOException e) {
@@ -152,7 +152,7 @@ public class Rebus implements ActionListener, Game {
         }
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Jag\\IdeaProjects\\GuessingGame\\leaderboard.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("GuessingGame"));
             String s;
 
             while ((s = br.readLine()) != null)
