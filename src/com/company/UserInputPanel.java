@@ -9,17 +9,19 @@ public class UserInputPanel extends JPanel implements ActionListener {
     private String userName;
     private int userAge;
 
+
     private JLabel outputLabel = new JLabel("Enter your name and age");
     private JButton okButton = new JButton("Ok");
     private JTextField userNameInput = new JTextField("Name",16);
     private JTextField userAgeInput = new JTextField("Age",16);
+    Person p = new Person();
 
     public UserInputPanel() {
+
         add(outputLabel);
         add(userNameInput);
         add(userAgeInput);
         add(okButton);
-
         okButton.addActionListener(this);
     }
 
@@ -27,14 +29,34 @@ public class UserInputPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         setUserName(userNameInput.getText());
         setUserAge(Integer.parseInt(userAgeInput.getText()));
-        if (userAge < 18) {
+        p.setName(userNameInput.getText());
+        p.setAge(Integer.parseInt(userAgeInput.getText()));
+        System.out.println(p.toString());
+
+        if (p.age < 13) {
             try {
+                JOptionPane.showMessageDialog(null,"Since your age is below 18, let's play the Rebus game!" );
                 Rebus rebus = new Rebus();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-        } else {
+        }
+        if (p.age > 13  && p.age <18)
+        {
+
+            try {
+                Pixelated pixelated = new Pixelated();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+        }
+
+
+        else {
             removeAll();
+
+
             AdultGame_Version_2 adultGame = new AdultGame_Version_2();
             add(adultGame.getGamePanel());
 

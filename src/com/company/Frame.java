@@ -11,14 +11,22 @@ public class Frame extends JFrame {
 
     UserInputPanel userInput = new UserInputPanel();
     JPanel userInputPanel = new JPanel();
+    Person person = new Person();
 
 
     public Frame() {
 
         userInputPanel.add(userInput);
         add(userInputPanel);
+
+
+
+
+
+
         setSize(new Dimension(600, 200));
         setVisible(true);
+
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 

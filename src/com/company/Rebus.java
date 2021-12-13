@@ -5,10 +5,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
-public class Rebus implements ActionListener {
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+
+public class Rebus implements ActionListener, Game {
     ImageIcon happy = new ImageIcon("src/pictures/happy.png");
     ImageIcon rebus = new ImageIcon("src/pictures/rebus.png");
     ImageIcon ape = new ImageIcon("src/pictures/ape.png");
@@ -28,13 +29,10 @@ public class Rebus implements ActionListener {
             "s a _", "h _ p _ y", "r e _ _ s", "a _ e"
     };
 
-    String guess;
-    String answer;
+
     int index;
     int correctGuesses = 0;
     int total_questions = questions.length;
-    int result;
-    int seconds = 10;
     int second;
     Timer timer;
     int roundNumber = 1;
@@ -54,6 +52,8 @@ public class Rebus implements ActionListener {
     Font font1 = new Font("Arial", Font.PLAIN,70);
     JButton hintButton = new JButton("Press for hint");
     JLabel hintLabel = new JLabel("");
+    JButton exitButton = new JButton("Exit");
+    JButton skipButton = new JButton("Skip");
 
 
     public Rebus() throws IOException {
@@ -72,6 +72,8 @@ public class Rebus implements ActionListener {
         frame.add(questionLabel, BorderLayout.CENTER);
         frame.add(hintLabel);
         frame.setVisible(true);
+        frame.add(exitButton);
+        frame.add(skipButton);
 
         //Bounds
         questionLabel.setBounds(200,-50,300,600);
@@ -81,7 +83,9 @@ public class Rebus implements ActionListener {
         checkAnswer.setBounds(100,400,200,100);
         timerLabel.setBounds(225,-50,400,400);
         hintLabel.setBounds(225,-150,400,400);
-        hintButton.setBounds(200,500,200,100);
+        hintButton.setBounds(100,500,200,100);
+        exitButton.setBounds(325, 500,200,100);
+        skipButton.setBounds(0,300,100,100);
 
         //Colors
         hintButton.setBackground(Color.ORANGE);
@@ -102,11 +106,19 @@ public class Rebus implements ActionListener {
         hintButton.addActionListener(this);
         checkAnswer.addActionListener(this);
         submitButton.addActionListener(this);
+        exitButton.addActionListener(this);
+        skipButton.addActionListener(this);
+
 
         //Metod för nästa fråga
         nextQuestion();
+
+        Person p = new Person();
+
+
     }
 
+    @Override
     public void nextQuestion() throws IOException {
         inputText.setText("Type your answer here");
         submitButton.setBackground(Color.LIGHT_GRAY);
@@ -130,7 +142,35 @@ public class Rebus implements ActionListener {
             }
         });
     }
+    public void leaderboard(){
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\Jag\\IdeaProjects\\GuessingGame\\leaderboard.txt"));
+            bw.write(String.valueOf(second));
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Jag\\IdeaProjects\\GuessingGame\\leaderboard.txt"));
+            String s;
+
+            while ((s = br.readLine()) != null)
+            {
+                System.out.println(s);
+            }
+            br.close();
+
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+        @Override
     public void results() throws IOException {
+        leaderboard();
         timer.stop();
         frame.setIconImage(winner.getImage());
         timerLabel.setText("Total time: ");
@@ -143,11 +183,43 @@ public class Rebus implements ActionListener {
         submitButton.setVisible(false);
         checkAnswer.setVisible(false);
         hintButton.setVisible(false);
+        exitButton.setVisible(false);
+        skipButton.setVisible(false);
+
+
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        //if skipbutton pressed, skip question
+        if (e.getSource()==skipButton){
+            if (index==total_questions-1)
+            {
+                try {
+                    results();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            else {
+                index++;
+                questionLabel.setIcon(questions[index]);
+                rightAnswer.setText(answers[index]);
+            }
+
+        }
+
+        //If exitbutton pressed exit game
+        if (e.getSource() == exitButton){
+
+
+            if (JOptionPane.showConfirmDialog( frame,"Are you sure you want to exit the game?","Rebus",
+                    JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
+                System.exit(0);
+
+        }
 
         //If hintbutton pressed show hint for right question
         if (e.getSource() == hintButton){
@@ -204,8 +276,13 @@ public class Rebus implements ActionListener {
 
     }
 
+    public void leaderboardSort(){
+
+    }
+
 
     //Timer method
+    @Override
     public void timer() {
         timer = new Timer(1000, new ActionListener() {
             @Override

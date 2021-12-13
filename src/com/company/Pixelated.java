@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-public class Pixelated implements ActionListener {
+public class Pixelated implements ActionListener, Game {
     ImageIcon img = new ImageIcon("src/pictures/monalisa.jpg");
     ImageIcon monaLisa = new ImageIcon(img.getImage().getScaledInstance(200,200, Image.SCALE_SMOOTH));
 
@@ -100,6 +100,7 @@ public class Pixelated implements ActionListener {
         //Metod för nästa fråga
         nextQuestion();
     }
+    @Override
     public void nextQuestion() throws IOException {
         inputText.setText("Type your answer here");
         submitButton.setBackground(new Color(154,214,228));
@@ -123,6 +124,7 @@ public class Pixelated implements ActionListener {
             }
         });
     }
+    @Override
     public void results() throws IOException {
         timer.stop();
         frame.setIconImage(winner.getImage());
@@ -182,6 +184,7 @@ public class Pixelated implements ActionListener {
         }
     }
     //Timer method
+    @Override
     public void timer() {
         timer = new Timer(1000, new ActionListener() {
             @Override
