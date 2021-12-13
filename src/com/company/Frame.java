@@ -11,7 +11,7 @@ public class Frame extends JFrame {
 
     UserInputPanel userInput = new UserInputPanel();
     JPanel userInputPanel = new JPanel();
-    Person person = new Person();
+
 
 
     public Frame() {

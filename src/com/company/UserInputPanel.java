@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class UserInputPanel extends JPanel implements ActionListener {
-    private String userName;
-    private int userAge;
+   // private String userName;
+  //  private int userAge;
 
 
     private JLabel outputLabel = new JLabel("Enter your name and age");
@@ -27,8 +27,7 @@ public class UserInputPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        setUserName(userNameInput.getText());
-        setUserAge(Integer.parseInt(userAgeInput.getText()));
+     ////   setUserAge(Integer.parseInt(userAgeInput.getText()));
         p.setName(userNameInput.getText());
         p.setAge(Integer.parseInt(userAgeInput.getText()));
         System.out.println(p.toString());
@@ -67,7 +66,7 @@ public class UserInputPanel extends JPanel implements ActionListener {
         }
     }
 
-    public void setUserName(String userName) {
+  /*  public void setUserName(String userName) {
         this.userName = userName;
     }
 
@@ -82,4 +81,6 @@ public class UserInputPanel extends JPanel implements ActionListener {
     public int getUserAge() {
         return userAge;
     }
+
+   */
 }
