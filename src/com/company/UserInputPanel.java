@@ -34,16 +34,17 @@ public class UserInputPanel extends JPanel implements ActionListener {
 
         if (p.age < 13) {
             try {
-                JOptionPane.showMessageDialog(null,"Since your age is below 18, let's play the Rebus game!" );
+                JOptionPane.showMessageDialog(null,"Since your age is below 13, let's play the Rebus game!" );
                 Rebus rebus = new Rebus();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
-        else if (p.age > 13  && p.age <18)
+        else if (p.age <18)
         {
 
             try {
+                JOptionPane.showMessageDialog(null,"Since your age is above 13 and under 18, let's play the Pixelated game!" );
                 Pixelated pixelated = new Pixelated();
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -55,7 +56,7 @@ public class UserInputPanel extends JPanel implements ActionListener {
         else {
             removeAll();
 
-
+            JOptionPane.showMessageDialog(null,"Since your age is above 18, let's play the Questions game!" );
             AdultGame_Version_2 adultGame = new AdultGame_Version_2();
             add(adultGame.getGamePanel());
 
