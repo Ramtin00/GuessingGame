@@ -23,7 +23,7 @@ public class Frame extends JFrame {
 
 
 
-
+        setLocationRelativeTo(null);
         setSize(new Dimension(600, 200));
         setVisible(true);
 
