@@ -40,7 +40,7 @@ public class UserInputPanel extends JPanel implements ActionListener {
                 ex.printStackTrace();
             }
         }
-        if (p.age > 13  && p.age <18)
+        else if (p.age > 13  && p.age <18)
         {
 
             try {
