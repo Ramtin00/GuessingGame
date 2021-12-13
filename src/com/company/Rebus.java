@@ -70,6 +70,7 @@ public class Rebus implements ActionListener, Game {
         frame.add(rounds);
         frame.add(timerLabel);
         frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
         frame.add(questionLabel, BorderLayout.CENTER);
         frame.add(hintLabel);
         frame.setVisible(true);
