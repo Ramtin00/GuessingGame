@@ -1,6 +1,7 @@
 package com.company;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -17,7 +18,12 @@ public class UserInputPanel extends JPanel implements ActionListener {
     Person p = new Person();
 
     public UserInputPanel() {
-
+        setBackground(new Color(52, 73, 94 ));
+        outputLabel.setForeground(Color.WHITE);
+        okButton.setBackground(new Color(59, 89, 182));
+        okButton.setForeground(Color.WHITE);
+        okButton.setFocusPainted(false);
+        okButton.setFont(new Font("Tahoma", Font.BOLD, 12));
         add(outputLabel);
         add(userNameInput);
         add(userAgeInput);

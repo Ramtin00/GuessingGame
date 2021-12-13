@@ -16,6 +16,7 @@ public class Rebus implements ActionListener, Game {
     ImageIcon sadSax = new ImageIcon("src/pictures/sadSax.png");
     ImageIcon winner = new ImageIcon("src/pictures/winner.jpg");
 
+
    ImageIcon[] questions = {
            sadSax,happy, rebus,ape
 
@@ -145,7 +146,7 @@ public class Rebus implements ActionListener, Game {
     public void leaderboard(){
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("GuessingGame"));
-            bw.write(String.valueOf(second));
+            bw.write(( + second));
             bw.close();
         } catch (IOException e) {
             e.printStackTrace();
