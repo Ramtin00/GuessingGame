@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 public class AdultGame_Version_2 implements ActionListener {
 
     JPanel mainPanel = new JPanel();
+
+
     JLabel quizText = new JLabel("Round 1, Question 1");
     JLabel question = new JLabel();
 
@@ -46,19 +48,33 @@ public class AdultGame_Version_2 implements ActionListener {
 
 
     public JPanel getGamePanel() {
+        quizText.setForeground(Color.WHITE);
+
         roundOnePanel.setLayout(new BorderLayout());
+        roundOnePanel.setBackground(new Color(52, 73, 94));
 
         question.setText(roundOneQuestion1.getText());
-
+        question.setForeground(Color.WHITE);
         roundOnePanel.add(quizText, BorderLayout.NORTH);
         roundOnePanel.add(question, BorderLayout.CENTER);
         roundOnePanel.add(roundOneInput, BorderLayout.SOUTH);
 
+        roundTwoPanel.setBackground(new Color(52, 73, 94));
+
+
+        roundThreePanel.setBackground(new Color(52, 73, 94));
+
+
         mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(roundOnePanel, BorderLayout.NORTH);
+        mainPanel.add(roundOnePanel, BorderLayout.WEST);
 
         submit.addActionListener(this);
-        mainPanel.add(submit, BorderLayout.CENTER);
+        submit.setBackground(new Color(59, 89, 182));
+        submit.setForeground(Color.WHITE);
+        submit.setFocusPainted(false);
+        submit.setFont(new Font("Tahoma", Font.BOLD, 12));
+        mainPanel.add(submit, BorderLayout.EAST);
+        mainPanel.setBackground(new Color(52, 73, 94 ));
         return mainPanel;
     }
 
@@ -123,7 +139,7 @@ public class AdultGame_Version_2 implements ActionListener {
                 mainPanel.setLayout(new BorderLayout());
                 mainPanel.add(roundTwoPanel, BorderLayout.NORTH);
 
-                mainPanel.add(submit, BorderLayout.CENTER);
+                mainPanel.add(submit, BorderLayout.EAST);
                 mainPanel.revalidate();
                 mainPanel.repaint();
             }
@@ -168,7 +184,7 @@ public class AdultGame_Version_2 implements ActionListener {
                 mainPanel.removeAll();
                 mainPanel.setLayout(new BorderLayout());
                 mainPanel.add(roundThreePanel, BorderLayout.NORTH);
-                mainPanel.add(submit, BorderLayout.CENTER);
+                mainPanel.add(submit, BorderLayout.EAST);
             }
         }
 
