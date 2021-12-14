@@ -1,6 +1,7 @@
 package com.company;
 
 import javax.imageio.ImageIO;
+import javax.naming.Name;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,6 +16,7 @@ public class Rebus implements ActionListener, Game {
     ImageIcon ape = new ImageIcon("src/pictures/ape.png");
     ImageIcon sadSax = new ImageIcon("src/pictures/sadSax.png");
     ImageIcon winner = new ImageIcon("src/pictures/winner.jpg");
+    UserInputPanel userInputPanel = new UserInputPanel();
 
    ImageIcon[] questions = {
            sadSax,happy, rebus,ape
@@ -113,7 +115,7 @@ public class Rebus implements ActionListener, Game {
         //Metod för nästa fråga
         nextQuestion();
 
-        Person p = new Person();
+
 
 
     }
@@ -144,8 +146,8 @@ public class Rebus implements ActionListener, Game {
     }
     public void leaderboard(){
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("GuessingGame"));
-            bw.write(String.valueOf(second));
+            Writer bw = new BufferedWriter(new FileWriter("GuessingGame", true));
+            bw.write("Ålder: " + SingletonPerson.getInstance().getAge() + " Namn:  " + SingletonPerson.getInstance().getName() + " Tid: " + second + "\n");
             bw.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -187,11 +189,15 @@ public class Rebus implements ActionListener, Game {
         skipButton.setVisible(false);
 
 
+
+
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+
 
         //if skipbutton pressed, skip question
         if (e.getSource()==skipButton){
