@@ -1,6 +1,8 @@
 package com.company;
 
+import javax.naming.Name;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -8,11 +10,19 @@ import java.io.IOException;
 public class UserInputPanel extends JPanel implements ActionListener {
     private JLabel outputLabel = new JLabel("Enter your name and age");
     private JButton okButton = new JButton("Ok");
-    private JTextField userNameInput = new JTextField("Name", 16);
-    private JTextField userAgeInput = new JTextField("Age", 16);
+    private JTextField userNameInput = new JTextField("Name",16);
+    private JTextField userAgeInput = new JTextField("Age",16);
     SingletonPerson singletonPerson = SingletonPerson.getInstance();
 
-    public UserInputPanel() {
+
+
+    public UserInputPanel() throws IOException {
+        setBackground(new Color(52, 73, 94 ));
+        outputLabel.setForeground(Color.WHITE);
+        okButton.setBackground(new Color(59, 89, 182));
+        okButton.setForeground(Color.WHITE);
+        okButton.setFocusPainted(false);
+        okButton.setFont(new Font("Tahoma", Font.BOLD, 12));
         add(outputLabel);
         add(userNameInput);
         add(userAgeInput);

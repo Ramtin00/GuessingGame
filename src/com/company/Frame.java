@@ -11,15 +11,21 @@ public class Frame extends JFrame {
     JPanel userInputPanel = new JPanel();
 
 
+
     public Frame() throws IOException {
         userInputPanel.setBackground((new Color(52, 73, 94)));
         userInputPanel.add(userInput);
         add(userInputPanel);
 
+
         setSize(new Dimension(600, 130));
 
         setLocationRelativeTo(null);
         setVisible(true);
+
+
+
+
 
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);

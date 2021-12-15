@@ -1,11 +1,14 @@
 package com.company;
 
 import javax.imageio.ImageIO;
+import javax.naming.Name;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 public class Rebus implements ActionListener, Game {
     ImageIcon happy = new ImageIcon("src/pictures/happy.png");
@@ -13,17 +16,18 @@ public class Rebus implements ActionListener, Game {
     ImageIcon ape = new ImageIcon("src/pictures/ape.png");
     ImageIcon sadSax = new ImageIcon("src/pictures/sadSax.png");
     ImageIcon winner = new ImageIcon("src/pictures/winner.jpg");
+    UserInputPanel userInputPanel = new UserInputPanel();
 
-    ImageIcon[] questions = {
-            sadSax, happy, rebus, ape
+   ImageIcon[] questions = {
+           sadSax,happy, rebus,ape
 
     };
 
-    String[] answers = {
-            "sad", "happy", "rebus", "ape"
+    String [] answers = {
+           "sad","happy", "rebus","ape"
     };
 
-    String[] hints = {
+    String [] hints = {
             "s a _", "h _ p _ y", "r e _ _ s", "a _ e"
     };
 
@@ -37,6 +41,9 @@ public class Rebus implements ActionListener, Game {
 
     JFrame frame = new JFrame();
     JLabel questionLabel = new JLabel();
+    JLabel timeLabel = new JLabel();
+    JLabel secondsLeft = new JLabel();
+    JTextField numberRight = new JTextField();
     JButton submitButton = new JButton("Submit");
     JTextArea inputText = new JTextArea("Type answer here");
     JTextArea rightAnswer = new JTextArea();
@@ -44,17 +51,18 @@ public class Rebus implements ActionListener, Game {
     JButton checkAnswer = new JButton("Check answer");
     JButton playAgain = new JButton("Play Again");
     JLabel timerLabel = new JLabel();
-    Font font1 = new Font("Arial", Font.PLAIN, 70);
+    Font font1 = new Font("Arial", Font.PLAIN,70);
     JButton hintButton = new JButton("Press for hint");
     JLabel hintLabel = new JLabel("");
     JButton exitButton = new JButton("Exit");
     JButton skipButton = new JButton("Skip");
+    JButton leaderboardButton = new JButton("Leaderboard");
 
 
     public Rebus() throws IOException {
         //Frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 650);
+        frame.setSize(600,650);
         frame.setLayout(null);
         frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("src/pictures/backgroundPicture.jpg")))));
         frame.add(checkAnswer);
@@ -71,16 +79,16 @@ public class Rebus implements ActionListener, Game {
         frame.add(skipButton);
 
         //Bounds
-        questionLabel.setBounds(200, -50, 300, 600);
-        submitButton.setBounds(325, 400, 200, 100);
-        inputText.setBounds(225, 325, 200, 25);
-        rounds.setBounds(750, 600, 200, 200);
-        checkAnswer.setBounds(100, 400, 200, 100);
-        timerLabel.setBounds(225, -50, 400, 400);
-        hintLabel.setBounds(225, -150, 400, 400);
-        hintButton.setBounds(100, 500, 200, 100);
-        exitButton.setBounds(325, 500, 200, 100);
-        skipButton.setBounds(0, 300, 100, 100);
+        questionLabel.setBounds(200,-50,300,600);
+        submitButton.setBounds(325,400,200,100);
+        inputText.setBounds(225,325,200,25);
+        rounds.setBounds(750, 600, 200,200);
+        checkAnswer.setBounds(100,400,200,100);
+        timerLabel.setBounds(225,-50,400,400);
+        hintLabel.setBounds(225,-150,400,400);
+        hintButton.setBounds(100,500,200,100);
+        exitButton.setBounds(325, 500,200,100);
+        skipButton.setBounds(0,300,100,100);
 
         //Colors
         hintButton.setBackground(Color.ORANGE);
@@ -109,6 +117,8 @@ public class Rebus implements ActionListener, Game {
         nextQuestion();
 
 
+
+
     }
 
     @Override
@@ -116,27 +126,26 @@ public class Rebus implements ActionListener, Game {
         inputText.setText("Type your answer here");
         submitButton.setBackground(Color.LIGHT_GRAY);
         checkAnswer.setBackground(Color.LIGHT_GRAY);
-        if (index >= total_questions) {
+        if(index>=total_questions) {
             results();
             inputText.setVisible(false);
             rounds.setVisible(false);
-        } else {
+        }
+        else {
             questionLabel.setIcon(questions[index]);
             rightAnswer.setText(answers[index]);
         }
     }
-
-    //  public void displayAnswer()
-    {
+  //  public void displayAnswer()
+   {
         Timer pause = new Timer(2000, new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                submitButton.setForeground(new Color(25, 255, 0));
+            public void actionPerformed(ActionEvent e){
+                submitButton.setForeground(new Color(25,255,0));
             }
         });
     }
-
-    public void leaderboard() {
+    public void leaderboard(){
         try {
             Writer bw = new BufferedWriter(new FileWriter("GuessingGame", true));
             bw.write("Ålder: " + SingletonPerson.getInstance().getAge() + " Namn:  " + SingletonPerson.getInstance().getName() + " Tid: " + second + "\n");
@@ -145,11 +154,16 @@ public class Rebus implements ActionListener, Game {
             e.printStackTrace();
         }
 
+
+
+    }
+    public void showLeaderboard(){
         try {
             BufferedReader br = new BufferedReader(new FileReader("GuessingGame"));
             String s;
 
-            while ((s = br.readLine()) != null) {
+            while ((s = br.readLine()) != null)
+            {
                 System.out.println(s);
             }
             br.close();
@@ -161,8 +175,7 @@ public class Rebus implements ActionListener, Game {
         }
 
     }
-
-    @Override
+        @Override
     public void results() throws IOException {
         leaderboard();
         timer.stop();
@@ -171,29 +184,48 @@ public class Rebus implements ActionListener, Game {
         questionLabel.setIcon(null);
         questionLabel.setFont(font1);
         questionLabel.setText(second + " sec");
-        playAgain.setBounds(225, 500, 200, 100);
+        playAgain.setBounds(300,500,200,100);
         frame.add(playAgain);
+        frame.add(leaderboardButton);
+        leaderboardButton.setBounds(100,500,200,100);
         playAgain.addActionListener(this);
+        leaderboardButton.addActionListener(this);
         submitButton.setVisible(false);
         checkAnswer.setVisible(false);
         hintButton.setVisible(false);
         exitButton.setVisible(false);
         skipButton.setVisible(false);
+        inputText.setVisible(false);
+
+
+
+
 
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+
+        if (e.getSource()==leaderboardButton)
+        {
+            showLeaderboard();
+        }
+
+
+
         //if skipbutton pressed, skip question
-        if (e.getSource() == skipButton) {
-            if (index == total_questions - 1) {
+        if (e.getSource()==skipButton){
+            if (index==total_questions-1)
+            {
                 try {
                     results();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-            } else {
+            }
+            else {
                 index++;
                 questionLabel.setIcon(questions[index]);
                 rightAnswer.setText(answers[index]);
@@ -202,21 +234,22 @@ public class Rebus implements ActionListener, Game {
         }
 
         //If exitbutton pressed exit game
-        if (e.getSource() == exitButton) {
+        if (e.getSource() == exitButton){
 
 
-            if (JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit the game?", "Rebus",
-                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+            if (JOptionPane.showConfirmDialog( frame,"Are you sure you want to exit the game?","Rebus",
+                    JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
                 System.exit(0);
 
         }
 
         //If hintbutton pressed show hint for right question
-        if (e.getSource() == hintButton) {
+        if (e.getSource() == hintButton){
             hintLabel.setText(hints[index]);
         }
         //If play again button pressed, play the game again
-        if (e.getSource() == playAgain) {
+        if (e.getSource() == playAgain)
+        {
             frame.dispose();
             try {
                 new Rebus();
@@ -226,19 +259,24 @@ public class Rebus implements ActionListener, Game {
         }
 
         //If check answer button pressed make submit button green, if wrong make it red
-        if (e.getSource() == checkAnswer) {
+        if (e.getSource() == checkAnswer)
+        {
             if (inputText.getText().trim().equalsIgnoreCase(answers[index])) //Dubbelkolla
             {
                 submitButton.setBackground(Color.GREEN);
                 submitButton.setOpaque(true);
-            } else {
+            }
+            else
+            {
                 submitButton.setBackground(Color.RED);
                 submitButton.setOpaque(true);
             }
         }
         //If submit button pressed, submit your answer to move on to the next question
-        if (e.getSource() == submitButton) {
-            if (submitButton.getBackground().equals(Color.LIGHT_GRAY)) {
+        if(e.getSource()==submitButton)
+        {
+            if(submitButton.getBackground().equals(Color.LIGHT_GRAY))
+            {
                 JOptionPane.showMessageDialog(null, "Please check your answer");
             }
             if (submitButton.getBackground().equals(Color.GREEN)) //Dubbelkolla
@@ -251,7 +289,7 @@ public class Rebus implements ActionListener, Game {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-                roundNumber = roundNumber + 1;
+                roundNumber = roundNumber+1;
                 rounds.setText("Round " + (roundNumber));
 
             }
@@ -259,6 +297,11 @@ public class Rebus implements ActionListener, Game {
 
 
     }
+
+    public void leaderboardSort(){
+
+    }
+
 
     //Timer method
     @Override
