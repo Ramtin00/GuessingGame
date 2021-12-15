@@ -5,8 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class Pixelated implements ActionListener, Game {
     ImageIcon img = new ImageIcon("src/pictures/monalisa.jpg");
@@ -46,6 +45,7 @@ public class Pixelated implements ActionListener, Game {
     JButton playAgain = new JButton("Play Again");
     JLabel timerLabel = new JLabel();
     Font font1 = new Font("Cooper Black", Font.BOLD, 65);
+    JButton leaderboardButton = new JButton("Leaderboard");
 
 
     public Pixelated() throws IOException {
@@ -132,16 +132,56 @@ public class Pixelated implements ActionListener, Game {
         questionLabel.setIcon(null);
         questionLabel.setFont(font1);
         questionLabel.setText(second + "sec");
-        playAgain.setBounds(100, 500, 200, 100);
+        playAgain.setBounds(1, 500, 180, 100);
+        leaderboardButton.setBounds(181,500,180,100);
+        leaderboardButton.addActionListener(this);
+        frame.add(leaderboardButton);
 
         frame.add(playAgain);
         playAgain.addActionListener(this);
         submitButton.setVisible(false);
         checkAnswer.setVisible(false);
+        leaderboard();
+    }
+    public void showLeaderboard(){
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("GuessingGame"));
+            String s;
+            System.out.println("Leaderboard: ");
+
+            while ((s = br.readLine()) != null)
+            {
+                System.out.println(s);
+            }
+            br.close();
+
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+    public void leaderboard(){
+        try {
+            Writer bw = new BufferedWriter(new FileWriter("GuessingGame", true));
+            bw.write("Ålder: " + SingletonPerson.getInstance().getAge() + " Namn:  " + SingletonPerson.getInstance().getName() + " Tid: " + second + "\n");
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource()==leaderboardButton)
+        {
+            showLeaderboard();
+        }
+
         //If play again button pressed, play the game again
         if (e.getSource() == playAgain) {
             frame.dispose();

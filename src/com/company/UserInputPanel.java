@@ -32,17 +32,27 @@ public class UserInputPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        singletonPerson.setAge(Integer.parseInt(userAgeInput.getText()));
-        singletonPerson.setName(userNameInput.getText());
 
-        if (singletonPerson.getAge() < 13) {
+
+
+        try {
+
+            singletonPerson.setAge(Integer.parseInt(userAgeInput.getText()));
+            singletonPerson.setName(userNameInput.getText());
+        }
+        catch (NumberFormatException exception)
+        {
+            JOptionPane.showMessageDialog(null, "Please enter a valid number");
+        }
+
+        if (singletonPerson.getAge() < 13 && singletonPerson.getAge() > 3) {
             try {
                 JOptionPane.showMessageDialog(null, "Since your age is below 13, let's play the Rebus game!");
                 Rebus rebus = new Rebus();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-        } else if (singletonPerson.getAge() < 18) {
+        } else if (singletonPerson.getAge() < 18 && singletonPerson.getAge() > 13) {
             try {
                 JOptionPane.showMessageDialog(null, "Since your age is below 18, let's play the pixelated game!");
                 Pixelated pixelated = new Pixelated();
@@ -50,7 +60,7 @@ public class UserInputPanel extends JPanel implements ActionListener {
                 ex.printStackTrace();
             }
 
-        } else {
+        } else if (singletonPerson.getAge() >= 18){
             JOptionPane.showMessageDialog(null, "Since your age is above 18, let's play the questions game!");
             removeAll();
             AdultGame adultGame = new AdultGame();

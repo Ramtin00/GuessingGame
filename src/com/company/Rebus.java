@@ -161,6 +161,7 @@ public class Rebus implements ActionListener, Game {
         try {
             BufferedReader br = new BufferedReader(new FileReader("GuessingGame"));
             String s;
+            System.out.println("Leaderboard: ");
 
             while ((s = br.readLine()) != null)
             {
