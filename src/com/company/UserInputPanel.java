@@ -1,6 +1,5 @@
 package com.company;
 
-import javax.naming.Name;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,8 +8,8 @@ import java.io.IOException;
 public class UserInputPanel extends JPanel implements ActionListener {
     private JLabel outputLabel = new JLabel("Enter your name and age");
     private JButton okButton = new JButton("Ok");
-    private JTextField userNameInput = new JTextField("Name",16);
-    private JTextField userAgeInput = new JTextField("Age",16);
+    private JTextField userNameInput = new JTextField("Name", 16);
+    private JTextField userAgeInput = new JTextField("Age", 16);
     SingletonPerson singletonPerson = SingletonPerson.getInstance();
 
     public UserInputPanel() {
@@ -28,24 +27,23 @@ public class UserInputPanel extends JPanel implements ActionListener {
 
         if (singletonPerson.getAge() < 13) {
             try {
-                JOptionPane.showMessageDialog(null,"Since your age is below 13, let's play the Rebus game!" );
+                JOptionPane.showMessageDialog(null, "Since your age is below 13, let's play the Rebus game!");
                 Rebus rebus = new Rebus();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-        }
-        if (singletonPerson.getAge() > 13  && singletonPerson.getAge() <18)
-        {
+        } else if (singletonPerson.getAge() < 18) {
             try {
+                JOptionPane.showMessageDialog(null, "Since your age is below 18, let's play the pixelated game!");
                 Pixelated pixelated = new Pixelated();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
 
-        }
-        else {
+        } else {
+            JOptionPane.showMessageDialog(null, "Since your age is above 18, let's play the questions game!");
             removeAll();
-            AdultGame_Version_2 adultGame = new AdultGame_Version_2();
+            AdultGame adultGame = new AdultGame();
             add(adultGame.getGamePanel());
             revalidate();
             repaint();

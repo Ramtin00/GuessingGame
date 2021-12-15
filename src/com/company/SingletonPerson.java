@@ -6,9 +6,7 @@ public class SingletonPerson {
     private int age;
 
 
-
-
-    private SingletonPerson (){
+    private SingletonPerson() {
 
     }
 
@@ -17,14 +15,13 @@ public class SingletonPerson {
     }
 
 
-
-    public static SingletonPerson getInstance(){
+    public static SingletonPerson getInstance() {
         return SingletonHolder.instance;
     }
+
     public String getName() {
         return name;
     }
-
 
 
     public void setName(String name) {
@@ -38,11 +35,6 @@ public class SingletonPerson {
     public int getAge() {
         return age;
     }
-
-
-
-
-
 
 
 }

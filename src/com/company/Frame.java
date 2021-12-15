@@ -1,21 +1,18 @@
 package com.company;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 
 public class Frame extends JFrame {
-    //Klasser med panelerna vi sak använda
+    //Klasser med panelerna vi ska använda
 
     UserInputPanel userInput = new UserInputPanel();
     JPanel userInputPanel = new JPanel();
 
 
-
     public Frame() throws IOException {
-        userInputPanel.setBackground((new Color(52, 73, 94 )));
+        userInputPanel.setBackground((new Color(52, 73, 94)));
         userInputPanel.add(userInput);
         add(userInputPanel);
 

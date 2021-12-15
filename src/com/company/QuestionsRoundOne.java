@@ -1,9 +1,10 @@
 package com.company;
+
 import java.util.HashMap;
 
 
 public class QuestionsRoundOne {
-    private HashMap<String,String> roundOneQuestions = new HashMap<>();
+    private HashMap<String, String> roundOneQuestions = new HashMap<>();
 
     private final String QUESTION1 = "What goes up and down, but always remains in the same place?";
     private final String QUESTION2 = "What city do The Beatles come from?";
@@ -18,11 +19,6 @@ public class QuestionsRoundOne {
         this.roundOneQuestions.put(QUESTION1, ANSWER1);
         this.roundOneQuestions.put(QUESTION2, ANSWER2);
         this.roundOneQuestions.put(QUESTION3, ANSWER3);
-    }
-
-
-    public HashMap<String, String> getRoundOneQuestions() {
-        return roundOneQuestions;
     }
 
     public String getQUESTION1() {

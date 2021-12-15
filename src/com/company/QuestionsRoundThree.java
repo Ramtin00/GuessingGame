@@ -1,9 +1,10 @@
 package com.company;
+
 import java.util.HashMap;
 
 
 public class QuestionsRoundThree {
-    private HashMap<String,String> roundThreeQuestions = new HashMap<>();
+    private HashMap<String, String> roundThreeQuestions = new HashMap<>();
 
     private final String QUESTION1 = "What river runs through Baghdad?";
     private final String QUESTION2 = "In what country can you visit Machu Picchu?";
@@ -14,16 +15,10 @@ public class QuestionsRoundThree {
     private final String ANSWER3 = "Sudan";
 
 
-
     public QuestionsRoundThree() {
         this.roundThreeQuestions.put(QUESTION1, ANSWER1);
         this.roundThreeQuestions.put(QUESTION2, ANSWER2);
         this.roundThreeQuestions.put(QUESTION3, ANSWER3);
-    }
-
-
-    public HashMap<String, String> getRoundThreeQuestions() {
-        return roundThreeQuestions;
     }
 
     public String getQUESTION1() {
