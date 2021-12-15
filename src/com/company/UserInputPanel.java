@@ -45,7 +45,7 @@ public class UserInputPanel extends JPanel implements ActionListener {
             JOptionPane.showMessageDialog(null, "Please enter a valid number");
         }
 
-        if (singletonPerson.getAge() < 13 && singletonPerson.getAge() > 3) {
+        if (singletonPerson.getAge() < 13 && singletonPerson.getAge() > 0) {
             try {
                 JOptionPane.showMessageDialog(null, "Since your age is below 13, let's play the Rebus game!");
                 Rebus rebus = new Rebus();
